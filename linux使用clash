@@ -1,0 +1,81 @@
+https://www.noseeflower.icu/
+技术杂谈
+linux使用clash
+首先第一步更新系统
+Copy
+sudo apt-get update
+下载clash
+新建一个目录来存放clash
+
+Copy
+mkdir clash
+随后进入目录
+
+Copy
+cd clash
+下载clash
+
+请务必根据自己的系统来灵活调整下载的版本，查询系统详情的命令为uname -a
+
+Copy
+wget https://github.com/doreamon-design/clash/releases/download/v2.0.24/clash_2.0.24_linux_amd64.tar.gz
+解压
+
+Copy
+#注意活用tab键补齐
+tar -zxvf clash_2.0.24_linux_amd64.tar.gz
+重命名方便使用
+
+Copy
+mv clash_2.0.24_linux_amd64.tar.gz clash
+赋予clash可执行权限
+
+Copy
+chmod 777 clash
+设置配置文件
+Copy
+#订阅链接请自行替换，另外curl获取的链接一定要加上引号
+curl -f "订阅链接" >> config.yaml
+成功后会在当前目录生成一个config.yaml文件
+
+运行以下命令启动clash
+
+Copy
+#运行的时候会使用当前文件夹的config.yaml文件
+./clash -d ./
+命令运行时会自动配置所需文件，需要等待一会儿
+
+设置命令行代理
+
+Copy
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890
+Copy
+#访问下google看看是否有返回
+curl "www.google.com"
+取消命令行代理
+
+Copy
+unset http_proxy
+unset https_proxy
+在服务器中
+可以配合screen命令进行使用
+
+Copy
+#下载screen
+apt-get install screen
+
+#创建一个screen,clash这个字段可自行替换
+screen -S clash
+现在我们就能在一个单独的窗口运行clash
+
+想要退出screen让它在后台运行，按下Ctrl+A+D即可
+
+Copy
+#再回到screen界面
+screen -r clash
+想要删除screen，进入想要删除的screen中，按下Ctrl+D
+
+Next
+Appium安装与环境配置
+Last updated 2 months ago
+
